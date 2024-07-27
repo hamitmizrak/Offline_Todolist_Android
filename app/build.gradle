@@ -59,6 +59,8 @@ dependencies {
 
     /*measurement*/
     implementation 'com.google.android.gms:play-services-measurement-impl:22.0.2'
+    implementation libs.activity
+    implementation libs.constraintlayout
 
     /*Lombok*/
     compileOnly 'org.projectlombok:lombok:1.18.34'

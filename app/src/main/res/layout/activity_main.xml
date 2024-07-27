@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:orientation="vertical"
+    android:background="@drawable/todolist"
+    >
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <!--Kodlar Buraya-->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:height="50dp"
+                android:text="@string/homepage"
+                android:gravity="center"
+                android:textStyle="bold|italic"
+                android:textSize="16dp"
+                android:alpha="0.8"
+                android:layout_marginTop="2dp"
+                android:textColor="@color/hm_white"
+                android:background="@color/hm_black"
+                />
+
+            <!--Notebook Redirect-->
+            <!--
+            android:textColor="@color/hm_primary"
+            android:textColor="@drawable/button_shadow"
+             android:background="@drawable/button_shadow"
+             android:backgroundTint="@color/black"
+             API seviyesi ve uyumluluk: Kullandığımı bazı drawable özellikleri bazı API seviyelerini desteklemiyor.
+             Minumum API seviyesinin kullandığımız drawable özelliklerini desteklediğinden emin olmalıyız.
+            -->
+            <Button
+                android:id="@+id/notebook_main_redirect_id"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:minWidth="100dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:text="@string/todolist_redirect"
+                android:drawableLeft="@drawable/homepage_button"
+                android:textColor="#FFFFFF"
+                android:backgroundTint="@color/hm_secondary"
+                android:layout_marginLeft="10dp"
+                android:enabled="true"
+                android:textAllCaps="false"
+                />
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>

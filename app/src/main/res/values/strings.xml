@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">TodoListAndroid</string>
+    <string name="homepage">Anasayfaya Hoşgeldiniz</string>
+
+    <!--TodoList-->
+    <string name="todolist_redirect">TodoList Git</string>
+
 </resources>
