@@ -4,5 +4,7 @@
 
     <!--TodoList-->
     <string name="todolist_redirect">TodoList Git</string>
+    <string name="todo_edit">Yapılacak İşler ...</string>
+    <string name="todo_add">Ekle</string>
 
 </resources>
