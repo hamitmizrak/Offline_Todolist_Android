@@ -1,0 +1,80 @@
+
+/*plugin*/
+plugins {
+    // NOT:  alias(libs.plugins.android.application) ve   id 'com.android.application' aynıdır.
+    // Gradle versiyon kataloglarını kullanarak eklentileri eklemenin bir yoludur
+    //alias(libs.plugins.android.application)
+
+    // Firebase Database
+    // Gradle dosyasında Android uygulaması için gerekli eklentileri belirtir.
+    // Bu komut projeye Android uygulama için gerekli modülleri derlemek ve çalıştırmak için gereken araçları ekler
+    id 'com.android.application'
+
+    // Firebase Database
+    id 'com.google.gms.google-services'
+}
+
+android {
+    namespace 'com.hamitmizrak.todolistandroid'
+    compileSdk 34
+
+    /*Türkçe karakter*/
+    compileOptions {
+        /* encoding = 'windows-1254'*/
+        encoding = 'UTF-8'
+    }
+
+    defaultConfig {
+        applicationId "com.hamitmizrak.todolistandroid"
+        minSdk 30
+        targetSdk 34
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+/*dependencies*/
+dependencies {
+    /*Firebase*/
+    implementation 'com.google.firebase:firebase-analytics'
+    implementation libs.firebase.database
+    // firebase-bom: Kitaplık sürümlerini kolay yönetmenin bir yoludur.
+    // Her zaman uyumlu kitapkık sürümlerinin kullanamk için Android Firebase Android BOM'u kullanın
+    implementation platform('com.google.firebase:firebase-bom:33.1.2')
+    implementation 'com.google.firebase:firebase-auth'
+    implementation 'com.google.firebase:firebase-firestore'
+
+    /*measurement*/
+    implementation 'com.google.android.gms:play-services-measurement-impl:22.0.2'
+
+    /*Lombok*/
+    compileOnly 'org.projectlombok:lombok:1.18.34'
+    annotationProcessor 'org.projectlombok:lombok:1.18.34'
+
+    implementation libs.appcompat
+    implementation libs.material
+    testImplementation libs.junit
+    androidTestImplementation libs.ext.junit
+    androidTestImplementation libs.espresso.core
+}
+
+/*GMS*/
+/*
+ Gradle yapılandırma dosyasına Google Hizmetlerini eklemektedir.
+ Bu eklenti Google API'lerine bağlamak için google-services.json
+ Genellikle Firebase vb. Google hizmetlerini kullanmak istediğimizde bu eklentiyi ekleriz
+*/
+//apply plugin: 'com.google.gms.google-services'
