@@ -34,7 +34,7 @@
                 android:background="@color/hm_black"
                 />
 
-            <!--Notebook Redirect-->
+            <!--TodoList Redirect-->
             <!--
             android:textColor="@color/hm_primary"
             android:textColor="@drawable/button_shadow"
