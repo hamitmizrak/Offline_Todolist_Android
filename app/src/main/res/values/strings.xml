@@ -6,5 +6,8 @@
     <string name="todolist_redirect">TodoList Git</string>
     <string name="todo_edit">Yapılacak İşler ...</string>
     <string name="todo_add">Ekle</string>
+    <string name="todo_delete">Sil</string>
+    <string name="todo_update">Güncelle</string>
+    <string name="todo_update_edit_text">Güncelleme İçin yeni görevi giriniz</string>
 
 </resources>
