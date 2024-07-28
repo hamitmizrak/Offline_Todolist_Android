@@ -1,7 +1,6 @@
 package com.hamitmizrak.todolistandroid;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +10,9 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AlertDialog;
+
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import java.util.ArrayList;
@@ -95,10 +97,33 @@ public class TaskAdapter extends ArrayAdapter<TaskModel> {
         buttonDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                DatabaseReference databaseReferenceDelete = FirebaseDatabase.getInstance().getReference(PersistDataUrl.FIREBASE_REFERANCE_ROOT).child(taskModel.getId());
-                databaseReferenceDelete.removeValue();
-                tasks.remove(position);
-                notifyDataSetChanged();
+
+                // Confirm AlertDialog
+                AlertDialog.Builder alertDialogTodoList= new AlertDialog.Builder(context);
+
+                // Yanıt Evetse
+                alertDialogTodoList.setPositiveButton("Silmek İstiyor musunuz ?", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        DatabaseReference databaseReferenceDelete = FirebaseDatabase.getInstance().getReference(PersistDataUrl.FIREBASE_REFERANCE_ROOT).child(taskModel.getId());
+                        databaseReferenceDelete.removeValue();
+                        tasks.remove(position);
+                        notifyDataSetChanged();
+                    }
+                });
+
+                //Yanıt Hayırsa
+                alertDialogTodoList.setNegativeButton("Hayır", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Toast.makeText(context, "Silinmedi", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+                // AlertDialog Bilgileri
+                alertDialogTodoList.setTitle("TodoList Sayfası");
+                alertDialogTodoList.setMessage("Application Yönlendirmesi");
+                alertDialogTodoList.show();
             }
         });
 
@@ -117,10 +142,10 @@ public class TaskAdapter extends ArrayAdapter<TaskModel> {
     private void showUpdateDialog(final TaskModel taskModel) {
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(context);
         LayoutInflater inflater = context.getLayoutInflater();
-        final View dialogView = inflater.inflate(R.layout.update_dialog_custom_layout, null);
-        dialogBuilder.setView(dialogView);
+        final View dialogViewUpdate = inflater.inflate(R.layout.update_dialog_custom_layout, null);
+        dialogBuilder.setView(dialogViewUpdate);
 
-        final EditText editTextTask = dialogView.findViewById(R.id.editTextUpdateTask);
+        final EditText editTextTask = dialogViewUpdate.findViewById(R.id.editTextUpdateTask);
         editTextTask.setText(taskModel.getName());
 
         dialogBuilder.setTitle("Yapılacak İşi Güncelle");

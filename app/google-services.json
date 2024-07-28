@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "352957999886",
+    "firebase_url": "https://todolist-hm-default-rtdb.asia-southeast1.firebasedatabase.app",
     "project_id": "todolist-hm",
     "storage_bucket": "todolist-hm.appspot.com"
   },

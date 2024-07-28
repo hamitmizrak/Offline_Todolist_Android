@@ -17,23 +17,33 @@
         "?attr/selectableItemBackgroundBorderless" :
         Android XML düzen dosyasında bir öğeye tıklayabilmek için arka plan uyglaması için kullanılır
         Ayrıca bir öğenin tıklanabilir bir öğe için kenarlarında herhangi bir sınır olmaksızın dokunma geri bildirimi sağlar
+
+         android:text="@string/todo_delete"
         -->
     <Button
         android:id="@+id/buttonDeleteTask"
-        android:layout_width="wrap_content"
+        android:layout_width="45dp"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_centerVertical="true"
-        android:background="?attr/selectableItemBackgroundBorderless"
-        android:text="@string/todo_delete" />
+        android:textAllCaps="false"
+        android:textStyle="bold"
+        android:layout_marginStart="5dp"
+        android:drawableLeft="@drawable/vector_delete"
+        android:backgroundTint="@color/hm_danger"/>
 
-    <!--UPDATE-->
+    <!--
+    UPDATE
+    android:text="@string/todo_update"
+    -->
     <Button
         android:id="@+id/buttonUpdateTask"
-        android:layout_width="wrap_content"
+        android:layout_width="45dp"
         android:layout_height="wrap_content"
         android:layout_toStartOf="@id/buttonDeleteTask"
         android:layout_centerVertical="true"
-        android:background="?attr/selectableItemBackgroundBorderless"
-        android:text="@string/todo_update" />
+        android:textAllCaps="false"
+        android:textStyle="bold"
+        android:drawableLeft="@drawable/vector_update"
+        android:backgroundTint="@color/hm_primary"/>
 </RelativeLayout>
