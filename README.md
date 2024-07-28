@@ -122,10 +122,140 @@ public class MainActivity extends AppCompatActivity {
 
 ```
 ---
-## Toast
+## Adapter
 ```sh 
-
+ADAPTER
 ```
+### Android Adapter Nedir?
+
+Adapter, Android'de veri kaynakları ile kullanıcı arayüzü (UI) bileşenleri arasındaki köprü işlevi gören bir tasarım desenidir. 
+Adapter sınıfları, veri setlerini alır ve bu verileri ListView, GridView, RecyclerView gibi UI bileşenlerine bağlar. Adapter'lar, genellikle veri kaynakları ve UI bileşenleri arasındaki veri dönüştürme ve aktarımını yönetir.
+
+### Adapter Türleri
+
+1. **ArrayAdapter**:
+    - Basit veri setlerini (örneğin, string dizisi) bir ListView veya Spinner'a bağlamak için kullanılır.
+    - Standart bir düzen (layout) sağlar ve her öğeyi basit bir TextView'e dönüştürür.
+
+2. **SimpleAdapter**:
+    - Daha karmaşık veri yapıları (örneğin, HashMap veya ArrayList) için kullanılır.
+    - Özelleştirilmiş düzenlerle verilerin nasıl görüntüleneceğini tanımlar.
+
+3. **CursorAdapter**:
+    - Veritabanından (genellikle SQLite) alınan verileri ListView veya GridView gibi bileşenlere bağlamak için kullanılır.
+    - Cursor kullanarak veritabanı sorgularından dönen verileri işler.
+
+4. **BaseAdapter**:
+    - Kendi özelleştirilmiş adapter'larınızı oluşturmak için temel sınıf olarak kullanılır.
+    - ListView, GridView veya Spinner gibi bileşenlere daha fazla esneklik sağlar.
+
+5. **RecyclerView.Adapter**:
+    - RecyclerView bileşeni için kullanılır.
+    - Daha modern ve esnek bir yaklaşımla büyük veri setlerini yönetir.
+
+### Adapter'ın Temel Görevleri
+
+1. **Veri Sağlama**: Adapter, veri setini sağlar ve UI bileşenlerine aktarır.
+2. **View Sağlama**: Adapter, her veri öğesi için uygun bir View (görünüm) oluşturur.
+3. **Veri Yenileme**: Adapter, veri setindeki değişiklikleri izler ve UI bileşenini günceller.
+
+### Nasıl Çalışır?
+
+Adapter, veri seti ve UI bileşeni arasında bir köprü oluşturur. Örneğin, bir ArrayAdapter kullanarak bir string dizisini ListView'a bağladığınızda, her bir string öğesi için bir TextView oluşturulur ve ListView'da görüntülenir.
+
+### Temel Kullanım Örneği
+
+#### ArrayAdapter Kullanımı:
+
+```java
+// MainActivity.java
+public class MainActivity extends AppCompatActivity {
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        // Veriyi tanımla
+        String[] data = {"Apple", "Banana", "Cherry", "Date", "Elderberry"};
+
+        // ListView'u bul
+        ListView listView = findViewById(R.id.listView);
+
+        // ArrayAdapter oluştur
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(
+            this,
+            android.R.layout.simple_list_item_1,
+            data
+        );
+
+        // Adapter'ı ListView'a bağla
+        listView.setAdapter(adapter);
+    }
+}
+```
+
+#### BaseAdapter Kullanımı:
+
+```java
+// CustomAdapter.java
+public class CustomAdapter extends BaseAdapter {
+    private Context context;
+    private ArrayList<String> data;
+
+    public CustomAdapter(Context context, ArrayList<String> data) {
+        this.context = context;
+        this.data = data;
+    }
+
+    @Override
+    public int getCount() {
+        return data.size();
+    }
+
+    @Override
+    public Object getItem(int position) {
+        return data.get(position);
+    }
+
+    @Override
+    public long getItemId(int position) {
+        return position;
+    }
+
+    @Override
+    public View getView(int position, View convertView, ViewGroup parent) {
+        if (convertView == null) {
+            convertView = LayoutInflater.from(context).inflate(R.layout.custom_item, parent, false);
+        }
+
+        TextView textView = convertView.findViewById(R.id.textView);
+        textView.setText(data.get(position));
+
+        return convertView;
+    }
+}
+
+// MainActivity.java
+public class MainActivity extends AppCompatActivity {
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        ArrayList<String> data = new ArrayList<>(Arrays.asList("Apple", "Banana", "Cherry"));
+
+        ListView listView = findViewById(R.id.listView);
+        CustomAdapter adapter = new CustomAdapter(this, data);
+        listView.setAdapter(adapter);
+    }
+}
+```
+
+### Özet
+
+Adapter, Android uygulamalarında veri setlerini UI bileşenlerine bağlayan bir yapı olarak büyük öneme sahiptir. Farklı türde adapter'lar farklı veri kaynakları ve UI bileşenleri için kullanılır. Adapter'lar, veri setini yönetir, dönüştürür ve UI bileşenine uygun şekilde sunar.
+
+
 ---
 ## Toast
 ```sh 
