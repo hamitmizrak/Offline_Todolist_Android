@@ -16,7 +16,7 @@ plugins {
 
 android {
     namespace 'com.hamitmizrak.todolistandroid'
-    compileSdk 34
+    compileSdk 34 //Google play build
 
     /*Türkçe karakter*/
     compileOptions {
